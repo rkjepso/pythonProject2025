@@ -8,6 +8,7 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn import preprocessing
 import matplotlib.image as mpimg
 from sklearn.preprocessing import PolynomialFeatures
+
 def draw_the_map():
     # Accumulate all months to year
     axMap.cla()
@@ -17,7 +18,10 @@ def draw_the_map():
     yr = df_year['Y'].tolist()
     nedborAar = df_year['Nedbor']
     ColorList = [color_from_nedbor(n) for n in nedborAar]
-    axMap.scatter(xr, yr, c=ColorList, s=nedborAar / 10, alpha=1, edgecolor="black")
+    axMap.scatter(xr, yr, c=ColorList, s=size_from_nedbor(nedborAar/12), alpha=1, edgecolor="black")
+    labels = [label_from_nedbor(n) for n in nedborAar]
+    for i, y in enumerate(xr):
+        axMap.text(xr[i], yr[i], s=labels[i], fontsize=8, ha='center', va='center')
 
 def index_from_nedbor(x):
     if x < 1300: return 0
@@ -28,6 +32,10 @@ def index_from_nedbor(x):
 
 def color_from_nedbor(nedbor):
     return colors[index_from_nedbor(nedbor)]
+def size_from_nedbor(nedbor):
+    return 350
+def label_from_nedbor(nedbor):
+    return str(int(nedbor / 100))
 
 def on_click(event) :
     global marked_point
@@ -49,7 +57,7 @@ def on_click(event) :
     axGraph.cla()
     draw_the_map()
     axMap.set_title(f"coord: ({x:.2f},{y:.2f})")
-    axMap.scatter(x, y, c=color_from_nedbor(aarsnedbor), s=aarsnedbor / 3, marker="*", edgecolor="yellow")
+    axMap.scatter(x, y, c=color_from_nedbor(aarsnedbor), s=size_from_nedbor(aarsnedbor)*3, marker="*", edgecolor="yellow")
     axGraph.set_title(f"Nedbør per måned, Årsnedbør {int(aarsnedbor)} mm")
 
     colorsPred = [color_from_nedbor(nedbor * 12) for nedbor in y_pred]
@@ -95,7 +103,7 @@ r_squared = r2_score(Y_test, Y_pred)
 print(f"R-squared: {r_squared:.2f}")
 print('mean_absolute_error (mnd) : ', mean_absolute_error(Y_test, Y_pred))
 
-colors = ['orange', 'lightgreen', 'green', 'red', 'blue']
+colors = ['yellow', 'lightblue', 'green', 'orange', 'grey']
 draw_the_map()
 
 plt.connect('button_press_event', on_click)
