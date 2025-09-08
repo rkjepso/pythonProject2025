@@ -46,7 +46,7 @@ def on_click(event) :
     x,y = marked_point
 
     vectors = []
-    months = range(1,13)
+    months = np.linspace(1,12,12)
     for mnd in months:
         vectors.append([x,y,mnd])
     AtPoint = np.vstack(vectors)
@@ -57,7 +57,8 @@ def on_click(event) :
     axGraph.cla()
     draw_the_map()
     axMap.set_title(f"coord: ({x:.2f},{y:.2f})")
-    axMap.scatter(x, y, c=color_from_nedbor(aarsnedbor), s=size_from_nedbor(aarsnedbor)*3, marker="*", edgecolor="yellow")
+    axMap.scatter(x, y, c=color_from_nedbor(aarsnedbor), s=size_from_nedbor(aarsnedbor)*3, marker="o", edgecolor="red")
+    axMap.text(x, y, s=label_from_nedbor(aarsnedbor), fontsize=8, ha='center', va='center')
     axGraph.set_title(f"Nedbør per måned, Årsnedbør {int(aarsnedbor)} mm")
 
     colorsPred = [color_from_nedbor(nedbor * 12) for nedbor in y_pred]
