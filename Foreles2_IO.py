@@ -1,7 +1,7 @@
 import csv
 import math
 
-filename = "test.csv"
+filename = "test.py"
 list1 = [1,2,3,4,5,6]
 list2 = [x * x for x in list1]
 
