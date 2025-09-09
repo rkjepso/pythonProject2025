@@ -1,14 +1,13 @@
-import pandas as pd
+
 from matplotlib import pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
-
 import pandas as pd
 import numpy as np
-data = pd.read_csv('house_data.csv')
-df = pd.DataFrame(data)
-# Features and target
+df = pd.read_csv('house_data.csv')
+
+# X = Input/Independent y = Output
 X = df[['m2', 'Standard']]
 y = df['Price']
 # Split into training and test sets
@@ -38,15 +37,16 @@ ax.set_xlabel('Size (m2)')
 ax.set_ylabel('Standard')
 
 #ax.set_zlabel('Price')
-colors = dfTest["Estimated"] / 1000_000
-labels = [10 for p in dfTest["Estimated"]]
+estM = dfTest["Estimated"] / 1000_000
+colors = estM
+#labels = [10 for p in dfTest["Estimated"]]
 scatter = ax.scatter(dfTest['m2'], dfTest['Standard'],
-                     c=colors, cmap='plasma', s=400, label=labels)
+                     c=colors, cmap='plasma', s=estM*60)
 
 #for i, y in enumerate(dfTest['m']):
 #ax.text(x, y, s="10", fontsize=8, ha='center', va='center')
 # Add color bar
 cbar = plt.colorbar(scatter, ax=ax, pad=0.05)
-cbar.set_label('Price Apartment Bergen')
+cbar.set_label('Beløp (millioner)')
 
 plt.show()

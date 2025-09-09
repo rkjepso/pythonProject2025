@@ -5,7 +5,7 @@ import numpy as np
 np.random.seed(42)
 
 # Generate data
-samples = 50
+samples = 100
 sizes = np.random.randint(30, 201, size=samples)
 standards =  np.random.uniform(1, 4, size=samples)
 
