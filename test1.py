@@ -19,14 +19,12 @@ model.fit(X_train, y_train)
 # Predict and evaluate
 y_pred = model.predict(X_test)
 mse = mean_squared_error(y_test, y_pred)
+print("Standard avvik:", int(np.sqrt(mse)))
 
 dfTest = pd.DataFrame(X_test)
 dfTest["Estimated"] = [int(e) for e in y_pred]
 
-# Output results
-print("Standard avvik:", int(np.sqrt(mse)))
-
-# Create 3D plot
+# Plot test data
 fig = plt.figure()
 ax = fig.add_axes((.1, .2, .85, .75))
 # Label axes
@@ -48,7 +46,6 @@ cbar = plt.colorbar(scatter, ax=ax, pad=0.05)
 cbar.set_label('Beløp (millioner)')
 
 def submit(expression):
-    global m2, standard
     ax.set_title(expression)
     plt.draw()
 
