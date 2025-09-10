@@ -21,7 +21,7 @@ def draw_the_map():
     axMap.scatter(xr, yr, c=ColorList, s=size_from_nedbor(nedborAar/12), alpha=1, edgecolor="black")
     labels = [label_from_nedbor(n) for n in nedborAar]
     for i, y in enumerate(xr):
-        axMap.text(xr[i], yr[i], s=labels[i], fontsize=8, ha='center', va='center')
+        axMap.text(xr[i], yr[i], s=labels[i], color='red', fontsize=8, ha='center', va='center')
 
 def index_from_nedbor(x):
     if x < 1300: return 0

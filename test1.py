@@ -1,37 +1,60 @@
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-import pandas as pd
 
-# Sample DataFrame
-df = pd.DataFrame({
-    'Size (m2)': [100, 150, 200, 120, 180],
-    'House Price': [150000, 250000, 350000, 180000, 300000],
-    'Price per m2': [1500, 1666.67, 1750, 1500, 1666.67]
-})
+from matplotlib import pyplot as plt
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+import pandas as pd
+import numpy as np
+from matplotlib.widgets import Button
+from matplotlib.widgets import TextBox
+df = pd.read_csv('house_data.csv')
+
+# X = Input/Independent y = Output
+X = df[['m2', 'Standard']]
+y = df['Price']
+# Split into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+model = LinearRegression()
+model.fit(X_train, y_train)
+# Predict and evaluate
+y_pred = model.predict(X_test)
+mse = mean_squared_error(y_test, y_pred)
+
+dfTest = pd.DataFrame(X_test)
+dfTest["Estimated"] = [int(e) for e in y_pred]
+
+# Output results
+print("Standard avvik:", int(np.sqrt(mse)))
 
 # Create 3D plot
-fig = plt.figure(figsize=(10, 7))
-ax = fig.add_subplot(111, projection='3d')
-
-# Set black background for axes
-ax.set_facecolor('black')
-fig.patch.set_facecolor('black')
-
-# Scatter plot with plasma colormap
-scatter = ax.scatter(df['Size (m2)'], df['House Price'], df['Price per m2'],
-                     c=df['Price per m2'], cmap='plasma', s=100)
-
-# Add color bar
-cbar = plt.colorbar(scatter, ax=ax, pad=0.1)
-cbar.set_label('Price per m2')
-
+fig = plt.figure()
+ax = fig.add_axes((.1, .2, .85, .75))
 # Label axes
-ax.set_xlabel('Size (m2)', color='white')
-ax.set_ylabel('House Price', color='white')
-ax.set_zlabel('Price per m2', color='white')
-ax.set_title('3D Scatter Plot with Black Axis Background', color='white')
+ax.set_title("Huspriser i Bergen")
+ax.set_xlabel('Size (m2)')
+ax.set_ylabel('Standard')
 
-# Set tick label colors
-ax.tick_params(colors='white')
+estM = dfTest["Estimated"] / 1000_000
+colors = estM
+scatter = ax.scatter(dfTest['m2'], dfTest['Standard'],
+                     c=colors, cmap='plasma', s=estM*60)
+xT = dfTest['m2'].tolist()
+yT = dfTest['Standard'].tolist()
+eT = estM.tolist()
+for i, y in enumerate(estM):
+    ax.text(xT[i], yT[i], s=f"{eT[i]:.1f}", color='lightgrey' if eT[i] < 10 else 'black', fontsize=12, ha='center', va='center')
+# Add color bar
+cbar = plt.colorbar(scatter, ax=ax, pad=0.05)
+cbar.set_label('Beløp (millioner)')
 
+def submit(expression):
+    global m2, standard
+    ax.set_title(expression)
+    plt.draw()
+
+axbox = fig.add_axes((0.3, 0.05, 0.4, 0.075))
+text_box = TextBox(axbox, "Angi m2, standard(1-4) : ", textalignment="center")
+text_box.on_submit(submit)
+text_box.set_val("100,2")
+# check it
 plt.show()

@@ -22,11 +22,9 @@ mse = mean_squared_error(y_test, y_pred)
 dfTest = pd.DataFrame(X_test)
 dfTest["Estimated"] = [int(e) for e in y_pred]
 print(dfTest)
+
 # Output results
-#print("Predicted prices:", y_pred)
 print("Standard avvik:", int(np.sqrt(mse)))
-#print("Model coefficients:", model.coef_)
-#print("Intercept:", model.intercept_)
 
 # Create 3D plot
 fig = plt.figure()
@@ -42,9 +40,11 @@ colors = estM
 #labels = [10 for p in dfTest["Estimated"]]
 scatter = ax.scatter(dfTest['m2'], dfTest['Standard'],
                      c=colors, cmap='plasma', s=estM*60)
-
-#for i, y in enumerate(dfTest['m']):
-#ax.text(x, y, s="10", fontsize=8, ha='center', va='center')
+xT = dfTest['m2'].tolist()
+yT = dfTest['Standard'].tolist()
+eT = estM.tolist()
+for i, y in enumerate(estM):
+    ax.text(xT[i], yT[i], s=f"{eT[i]:.1f}", color='lightgrey' if eT[i] < 10 else 'black', fontsize=12, ha='center', va='center')
 # Add color bar
 cbar = plt.colorbar(scatter, ax=ax, pad=0.05)
 cbar.set_label('Beløp (millioner)')
