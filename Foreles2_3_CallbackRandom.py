@@ -5,7 +5,7 @@ from datetime import  datetime as dt
 fig = plt.figure(figsize=(4,3))
 
 def on_getTime(event):
-    text = f"Min={dt.now().minute}: Sec={dt.now().second}"
+    text = f"Time={dt.now().hour}:{dt.now().minute}:{dt.now().second}"
     axtime.set_title(text)
     plt.draw()
 

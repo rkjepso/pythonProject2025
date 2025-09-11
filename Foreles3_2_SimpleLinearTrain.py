@@ -8,12 +8,10 @@ from sklearn.preprocessing import PolynomialFeatures
 
 # Generate synthetic data (rain!)
 X = np.linspace(0, 20, 41).reshape(-1, 1) # [0,0.5,1,1.5 ... 20]
-noise = np.random.randint(-150, 450, size=X.shape)
-#y = 2000 - noise + 20 * X
-y = 1500 + noise + pow(X-15, 2)*7
+y = 1500 + np.random.randint(-150, 450, size=X.shape) + pow(X-15, 2)*7
 
 # Split into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y)
 
 # Generate polynominal matrix/table
 poly = PolynomialFeatures(degree=3)

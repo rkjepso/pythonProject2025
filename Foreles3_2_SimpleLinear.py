@@ -8,7 +8,7 @@ from sklearn.preprocessing import PolynomialFeatures
 
 # Generate synthetic data
 x = np.linspace(0, 20, 20).reshape(-1, 1)
-y = 2500 + pow(x - 14, 2) * 4 + np.random.randint(0,200, size=x.shape)
+y = 2500 + pow(x - 12, 2) * 4 + np.random.randint(0,200, size=x.shape)
 poly = PolynomialFeatures(degree=2)
 X_poly = poly.fit_transform(x) # make tables for all x,x2,x3....
 
@@ -18,7 +18,6 @@ model.fit(X_poly, y)  # y = Ax + Bx2..Cx3 -> calulate A, B, C...
 
 # Predict, find the curve
 y_pred = model.predict(X_poly) # calulate y = Ax + Bx2..
-# Evaluate model quality
 std = np.sqrt(mean_squared_error(y, y_pred)) # standard deviation/avvk
 r_score = r2_score(y, y_pred)
 
