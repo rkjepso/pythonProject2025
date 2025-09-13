@@ -13,6 +13,6 @@ leil2 = [140,1]
 dfPred = pd.DataFrame(columns=["m2","Std"], data=[leil1, leil2])
 y_pred = model.predict(dfPred)
 print("Leiligheter i Bergen sentrum")
-print(f"{lei1} estimert pris {y_pred[0]:.1f}")
-print(f"{lei2} estimert pris {y_pred[1]:.1f}")
+print(f"{leil1} estimert pris {y_pred[0]:.1f}")
+print(f"{leil2} estimert pris {y_pred[1]:.1f}")
 plt.show()
