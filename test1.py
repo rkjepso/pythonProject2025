@@ -43,7 +43,7 @@ def plot_bubble(m2,standard, priceM):
 def submit(exp):
     arr = np.fromstring(exp, sep=",")
     XS = np.array([arr])
-    priceEst = model.predict(XS) / 1000_000
+    priceEst = model.predict(XS)
     plot_bubble(arr[0], arr[1], priceEst[0])
 
 axbox = fig.add_axes((0.4, 0.03, 0.5, 0.06))
@@ -53,7 +53,7 @@ text_box.label.set_fontsize(12)
 text_box.on_submit(submit)
 text_box.set_val("100,2")
 
-estM = [e / 1e6 for e in dfTest["Estimated"]] # converter til mill
+estM = dfTest["Estimated"].tolist()
 xT = dfTest['m2'].tolist()
 yT = dfTest['Standard'].tolist()
 for i in range(1, len(xT)):

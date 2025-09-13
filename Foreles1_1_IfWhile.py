@@ -13,7 +13,6 @@ if tall1 == tall2 :
 else:
     print("tallene er ulike : ")
 
-
 while tall1 > 0 :
     print(f"Tallet er : {tall1}")
     tall1 = tall1 - 1

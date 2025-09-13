@@ -7,11 +7,11 @@ np.random.seed(42)
 # Generate data
 samples = 100
 sizes = np.random.randint(30, 201, size=samples)
-standards =  np.random.uniform(1, 4, size=samples)
+standards =  np.round(np.random.uniform(1, 4, size=samples),1)
 
 # Calculate house prices
 prices = [
-    int(3000 * (size**0.7) * np.sqrt(standard) * np.random.randint(95,105))
+    np.round(0.003 * (size**0.7) * np.sqrt(standard) * np.random.randint(95,105), 1)
     for size, standard in zip(sizes, standards)
 ]
 

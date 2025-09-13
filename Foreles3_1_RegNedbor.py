@@ -13,7 +13,7 @@ ax = fig.add_axes((0.1,0.1, 0.8,0.8))
 ax.scatter(X_km, y_nedbor)
 
 poly = PolynomialFeatures(degree=1)
-X_poly = poly.fit_transform(X_km.reshape(-1,1))
+X_poly = poly.fit_transform(X_km.reshape(-1,1)) #from row to column reshape
 # Train the model
 model = LinearRegression()
 model.fit(X_poly, y_nedbor)
