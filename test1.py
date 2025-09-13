@@ -10,11 +10,14 @@ from matplotlib.widgets import TextBox
 
 df = pd.read_csv('house_data.csv')
 # Prepare plot
-fig = plt.figure(figsize=(10,8))
-ax = fig.add_axes((.1, .2, .85, .75), xlabel="(m2", ylabel="Standard (4 = top, 1 = dårlig)")
-ax.set_title("Leiligheter i Bergen (Estimert/Reel) verdi)")
+fig = plt.figure()
+ax = fig.add_axes((.1, .2, .85, .75))
+ax.set_title("Leiligheter i Bergen")
+ax.set_xlabel('(m2)')
+ax.set_ylabel('Standard (4=top,1=dårlig)')
 
-X = df[['m2', 'Standard']] # X = Input/Independent y = Output
+# X = Input/Independent y = Output
+X = df[['m2', 'Standard']]
 y = df['Price']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42)
 model = LinearRegression()
@@ -27,33 +30,33 @@ print("Standard avvik:", int(np.sqrt(mse)))
 dfTest = pd.DataFrame(X_test)
 dfTest["Estimated"] = [int(e) for e in y_pred]
 
-def plot_bubble(m2, standard, priceEstM, priceRealM, isNew=False):
+def plot_bubble(m2,standard, priceM):
     cmap = colormaps['viridis']
-    colorBack = cmap(priceEstM / 20)
-    if isNew :
-        colorBack = 'red'
+    colorBack = cmap(priceM/20)
     colorPrice = 'white'
-    if priceEstM > 12:
+    if priceM > 12:
         colorPrice = 'black'
-    ax.scatter(m2, standard, color=colorBack, s=priceEstM * 250)
-    ax.text(m2, standard, s=f"{priceEstM:.1f}({priceRealM:.1f})", color=colorPrice, fontsize=10, ha='center', va='center')
+    ax.scatter(m2, standard, color=colorBack, s=priceM*100)
+    ax.text(m2, standard, s=f"{priceM:.1f}", color=colorPrice, fontsize=12, ha='center', va='center')
     plt.draw()
 
 def submit(exp):
     arr = np.fromstring(exp, sep=",")
     XS = np.array([arr])
-    priceEst = model.predict(XS) / 1000_000
-    plot_bubble(arr[0], arr[1], priceEst[0], priceEst[0], True)
+    priceEst = model.predict(XS)
+    plot_bubble(arr[0], arr[1], priceEst[0])
 
-axbox = fig.add_axes((0.3, 0.03, 0.2, 0.03))
+axbox = fig.add_axes((0.4, 0.03, 0.5, 0.06))
 text_box = TextBox(axbox, "Angi m2, standard(1-4) : ", textalignment="center")
 text_box.text_disp.set_fontsize(12)
 text_box.label.set_fontsize(12)
 text_box.on_submit(submit)
+text_box.set_val("100,2")
 
-estM = dfTest["Estimated"].tolist() # converter til mill
+estM = dfTest["Estimated"].tolist()
 xT = dfTest['m2'].tolist()
 yT = dfTest['Standard'].tolist()
 for i in range(1, len(xT)):
-    plot_bubble(xT[i], yT[i], estM[i]/1e6, y_test.tolist()[i]/1e6)
+    plot_bubble(xT[i], yT[i], estM[i])
+
 plt.show()
