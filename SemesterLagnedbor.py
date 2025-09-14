@@ -2,11 +2,6 @@
 import pandas as pd
 import random
 
-
-
-
-
-
 df = pd.read_csv('Nedbor.csv')
 df["Month"] = 12
 #print(df.head())
