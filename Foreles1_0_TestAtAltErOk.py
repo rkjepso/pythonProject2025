@@ -8,7 +8,6 @@ x = ny.linspace(0.0,10,101)
 y = [sin(t) for t in x]
 z = [cos(t) for t in x]
 
-
 fig = plt.figure(figsize=(13, 6))
 axis = fig.add_axes((.1, .1, .8, .8))
 

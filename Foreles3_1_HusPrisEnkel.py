@@ -1,9 +1,9 @@
 import pandas as pd
 from matplotlib import pyplot as plt
 from sklearn.linear_model import LinearRegression
-dataLeil = [[50, 1, 4.5],[70, 4, 4.0],[90, 3, 6.0],[110, 2, 12.0]]
+dataLeil = [[50, 1, 2.5],            [70, 4, 4.0],
+            [90, 3, 6.0],            [110, 2, 12.0]]
 df = pd.DataFrame(columns=["m2","Std", "Price"], data=dataLeil)
-# X = Input/Independent y = Output
 X = df[['m2','Std']]
 y = df['Price']  # Create and train the model
 model = LinearRegression()

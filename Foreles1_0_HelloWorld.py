@@ -2,8 +2,7 @@
 print("Hello World")
 message = "Hello World 2"
 print(message)
-
-aar = 2024
+aar = 2025
 #formatterer stringen – f
 print(f"Hello World {aar}")
 
