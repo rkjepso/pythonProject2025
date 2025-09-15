@@ -1,10 +1,7 @@
 import pandas
 from matplotlib import pyplot as plt
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
-import pandas as pd
-import numpy as np
+
 dataHus = [[50, 1, 4.5],[70, 4, 4.0],[90, 3, 6.0],[110, 2, 12.0]]
 df = pandas.DataFrame(dataHus, columns =["m2","Std", "Price"])
 # X = Input/Independent y = Output

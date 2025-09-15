@@ -26,7 +26,7 @@ plt.scatter(x, y, color='blue', label='Train data')
 plt.plot(x, y_pred, color='red', label='Regression line')
 plt.xlabel('km from Bergen')
 plt.ylabel('Rain (mm)')
-plt.title(f'Linear Regression STD: {std:.2f}, R: {r_score:.2f}')
+plt.title(f'Linear Regression STD: {std:.2f}, R2: {r_score:.2f}')
 plt.legend()
 plt.show()
 
