@@ -33,8 +33,8 @@ def plot_bubble(m2, standard, priceEst, priceReal) :
     cmap = colormaps['viridis']
     colorBack = cmap(priceEst / 20) if priceReal != 0 else 'Red'
     colorPrice = 'white' if priceEst < 12 else 'black'
-    ax.scatter(m2, standard, color=colorBack, s=priceEst * 200)
-    ax.text(m2, standard, s=f"{priceEst:.1f}({priceReal:.1f})", color=colorPrice, fontsize=8, ha='center', va='center')
+    ax.scatter(m2, standard, color=colorBack, s=3600)
+    ax.text(m2, standard, s=f"{priceEst:.1f}({priceReal:.1f})", color=colorPrice, fontsize=10, ha='center', va='center')
     plt.draw()
 
 def submit(exp):
