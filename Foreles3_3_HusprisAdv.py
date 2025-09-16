@@ -18,7 +18,7 @@ ax.set_ylabel('Standard (4=top,1=dårlig)')
 
 X = df[['m2', 'Standard']]
 y = df['Price']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.10, random_state=42)
 model = LinearRegression()
 model.fit(X_train, y_train)
 
@@ -33,7 +33,7 @@ def plot_bubble(m2, standard, priceEst, priceReal) :
     cmap = colormaps['viridis']
     colorBack = cmap(priceEst / 20) if priceReal != 0 else 'Red'
     colorPrice = 'white' if priceEst < 12 else 'black'
-    ax.scatter(m2, standard, color=colorBack, s=3600)
+    ax.scatter(m2, standard, color=colorBack, s=3000)
     ax.text(m2, standard, s=f"{priceEst:.1f}({priceReal:.1f})", color=colorPrice, fontsize=10, ha='center', va='center')
     plt.draw()
 
