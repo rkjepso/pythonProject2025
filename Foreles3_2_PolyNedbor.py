@@ -23,6 +23,7 @@ r_score = r2_score(y, y_pred)
 
 # Plot
 plt.scatter(x, y, color='blue', label='Train data')
+plt.scatter(x, y_pred, color='red', label='Train data')
 plt.plot(x, y_pred, color='red', label='Regression line')
 plt.xlabel('km from Bergen')
 plt.ylabel('Rain (mm)')

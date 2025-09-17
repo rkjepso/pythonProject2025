@@ -38,7 +38,7 @@ plt.scatter(X_test, y_pred, color='red', label='Pred data')
 plt.plot(X, model.predict(X_all_poly), color='red', label='Regression line')
 plt.xlabel('km from Bergen')
 plt.ylabel('Rain (mm)')
-plt.title(f'Linear Regression STD: {np.sqrt(mse_test):.2f}, R: {r2_test:.2f}')
+plt.title(f'Linear Regression STD: {np.sqrt(mse_test):.2f}, R2: {r2_test:.2f}')
 plt.legend()
 plt.show()
 
