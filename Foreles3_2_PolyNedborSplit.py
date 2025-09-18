@@ -7,14 +7,15 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import PolynomialFeatures
 
 # Generate synthetic data (rain!)
+np.random.seed(1234)
 X = np.linspace(0, 20, 41).reshape(-1, 1) # [0,0.5,1,1.5 ... 20]
-y = 1500 + np.random.randint(-150, 450, size=X.shape) + pow(X-15, 2)*7
+y = 1500 + np.random.randint(-150, 450, size=X.shape) + pow(X-12, 2)*7
 
 # Split into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y)
 
 # Generate polynominal matrix/table
-poly = PolynomialFeatures(degree=3)
+poly = PolynomialFeatures(degree=2)
 X_train_poly = poly.fit_transform(X_train)
 X_test_poly = poly.transform(X_test)
 X_all_poly = poly.transform(X)
@@ -30,7 +31,6 @@ mse_test = mean_squared_error(y_test, y_pred)
 r2_test = r2_score(y_test, y_pred)
 
 # Plot
-plt.ylim(1000,5000)
 plt.scatter(X, y, color='blue', label='Train data')
 plt.scatter(X_test, y_test, color='green', label='Test data')
 plt.scatter(X_test, y_pred, color='red', label='Pred data')
