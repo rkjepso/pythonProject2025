@@ -4,7 +4,7 @@ from datetime import  datetime as dt
 
 fig = plt.figure(figsize=(4,3))
 def on_getTime(event):
-    text = f"Time={dt.now().hour}:{dt.now().minute}:{dt.now().second}"
+    text = f"Time={dt.now().hour:0>2}:{dt.now().minute:0>2}:{dt.now().second:0>2}:{dt.now().microsecond:0>6}"
     axtime.set_title(text)
     plt.draw()
 axtime = fig.add_axes((0.40, 0.05, 0.3, 0.2))
