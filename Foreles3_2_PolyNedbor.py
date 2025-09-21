@@ -7,10 +7,11 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import PolynomialFeatures
 
 # Generate synthetic data
-x = np.linspace(0, 20, 20).reshape(-1, 1)
-y = 2500 + pow(x - 12, 2) * 4 + np.random.randint(0,200, size=x.shape)
+np.random.seed(1234)
+X = np.linspace(0, 20, 41).reshape(-1, 1) # [0,0.5,1,1.5 ... 20]
+y = 1500 + np.random.randint(-150, 450, size=X.shape) + pow(X-12, 2)*7
 poly = PolynomialFeatures(degree=2)
-X_poly = poly.fit_transform(x) # make tables for all x,x2,x3....
+X_poly = poly.fit_transform(X) # make tables for all x,x2,x3....
 
 # Train the model
 model = LinearRegression()
@@ -22,9 +23,9 @@ std = np.sqrt(mean_squared_error(y, y_pred)) # standard deviation/avvk
 r_score = r2_score(y, y_pred)
 
 # Plot
-plt.scatter(x, y, color='blue', label='Train data')
-plt.scatter(x, y_pred, color='red', label='Train data')
-plt.plot(x, y_pred, color='red', label='Regression line')
+plt.scatter(X, y, color='blue', label='Train data')
+plt.scatter(X, y_pred, color='red', label='Train data')
+plt.plot(X, y_pred, color='red', label='Regression line')
 plt.xlabel('km from Bergen')
 plt.ylabel('Rain (mm)')
 plt.title(f'Linear Regression STD: {std:.2f}, R2: {r_score:.2f}')
