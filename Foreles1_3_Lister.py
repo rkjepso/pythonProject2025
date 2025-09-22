@@ -1,7 +1,8 @@
 
 
 #funksjoner & lister
-def kvadrer(n) -> int:
+# Her med typer spesifisert
+def kvadrer(n:int) -> int:
     return n*n
 
 list0 = [1,2,3,14,5,6]

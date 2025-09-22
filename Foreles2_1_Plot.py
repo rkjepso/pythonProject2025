@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 x:np.array = np.linspace(0,10,51) # array/tabell. Mye brukt
+#print(x)
 y:np.array = np.sin(x)
 fig = plt.figure(figsize=(13, 7))
 
