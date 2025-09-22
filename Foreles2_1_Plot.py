@@ -2,9 +2,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-x:np.array = np.linspace(0,10,51) # array/tabell. Mye brukt
-y:np.array = np.sin(x)
-fig = plt.figure(figsize=(13, 7))
+x = np.linspace(0,10,10) # array/tabell. Mye brukt
+print(x)
+y = np.sin(x)
+fig = plt.figure(figsize=(10, 4))
 
 axis = fig.add_axes(rect=(.1, .1, .8, .8))
 axis.set_title("y = sin(x)")

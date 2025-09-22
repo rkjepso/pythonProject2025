@@ -72,7 +72,7 @@ def draw_label_and_ticks():
     axGraph.set_xticklabels(xlabels)
 
 # Create the figures
-fig = plt.figure(figsize=(15, 6))
+fig = plt.figure(figsize=(10, 4))
 axGraph = fig.add_axes((0.03, 0.05, 0.35, 0.9))
 axMap = fig.add_axes((0.41, 0.05, 0.59, 0.9))
 draw_label_and_ticks()
