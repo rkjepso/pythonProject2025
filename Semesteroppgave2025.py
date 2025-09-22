@@ -104,7 +104,7 @@ r_squared = r2_score(Y_test, Y_pred)
 print(f"R-squared: {r_squared:.2f}")
 print('mean_absolute_error (mnd) : ', mean_absolute_error(Y_test, Y_pred))
 
-colors = ['yellow', 'lightblue', 'green', 'orange', 'grey']
+colors = ['yellow', 'orange', 'gray', 'blue', 'darkblue']
 draw_the_map()
 
 plt.connect('button_press_event', on_click)
