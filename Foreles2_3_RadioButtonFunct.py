@@ -20,7 +20,6 @@ def on_velgX(funk):
     if funk == 'Sin':
         lines[0].set_color('blue')
         lines[0].set_ydata(ysin)
-        # ax.set_ylim([-1, 1])
     plt.draw()
 
 radio_button = RadioButtons(axRadio, ('Cos', 'Sin'))
