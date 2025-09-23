@@ -18,7 +18,7 @@ def draw_the_map():
     yr = df_year['Y'].tolist()
     nedborAar = df_year['Nedbor']
     ColorList = [color_from_nedbor(n) for n in nedborAar]
-    axMap.scatter(xr, yr, c=ColorList, s=size_from_nedbor(nedborAar/12), alpha=1, edgecolor="black")
+    axMap.scatter(xr, yr, c=ColorList, s=size_from_nedbor(nedborAar/12), alpha=1)
     labels = [label_from_nedbor(n) for n in nedborAar]
     for i, y in enumerate(xr):
         axMap.text(xr[i], yr[i], s=labels[i], color='red', fontsize=8, ha='center', va='center')
@@ -57,8 +57,8 @@ def on_click(event) :
     axGraph.cla()
     draw_the_map()
     axMap.set_title(f"coord: ({x:.2f},{y:.2f})")
-    axMap.scatter(x, y, c=color_from_nedbor(aarsnedbor), s=size_from_nedbor(aarsnedbor)*3, marker="o", edgecolor="red")
-    axMap.text(x, y, s=label_from_nedbor(aarsnedbor), fontsize=8, ha='center', va='center')
+    axMap.scatter(x, y, c=color_from_nedbor(aarsnedbor), s=size_from_nedbor(aarsnedbor)*3, marker="o")
+    axMap.text(x, y, s=label_from_nedbor(aarsnedbor), color='red', fontsize=8, ha='center', va='center')
     axGraph.set_title(f"Nedbør per måned, Årsnedbør {int(aarsnedbor)} mm")
 
     colorsPred = [color_from_nedbor(nedbor * 12) for nedbor in y_pred]
@@ -104,7 +104,7 @@ r_squared = r2_score(Y_test, Y_pred)
 print(f"R-squared: {r_squared:.2f}")
 print('mean_absolute_error (mnd) : ', mean_absolute_error(Y_test, Y_pred))
 
-colors = ['yellow', 'lightblue', 'green', 'orange', 'grey']
+colors = ['yellow', 'orange', 'gray', 'blue', 'darkblue']
 draw_the_map()
 
 plt.connect('button_press_event', on_click)
