@@ -4,12 +4,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Create meshgrid data
-x = np.linspace(-1, 1, 10)
-y = np.linspace(-1, 1, 10)
+x = np.linspace(-1, 1, 15)
+y = np.linspace(-1, 1, 15)
 X, Y = np.meshgrid(x, y)
 
 # Define Z as a function of X and Y
-Z = np.cos(X)*np.cos(Y) * random.randrange(2000, 2500)
+Z = np.cos(X)*np.cos(Y*0.7) * random.randrange(2000, 2500)
 
 # Parameters for Gaussian noise
 mean = 0
@@ -32,7 +32,7 @@ surf = ax.plot_surface(X, Y, Z, cmap='viridis_r', edgecolor='none', alpha=0.5)
 ax.set_xlabel('X - Vest/Øst')
 ax.set_ylabel('Y - Nord/Sør')
 ax.set_zlabel('Z - Nedbør')
-ax.set_title('3D Surface Plot with Color Gradient (Z = sin(sqrt(X² + Y²)))')
+ax.set_title('3D "Nedbørsteppe"')
 
 # Add a color bar to show the mapping of colors to Z values
 fig.colorbar(surf, ax=ax, shrink=0.6, aspect=10, label='Z value')

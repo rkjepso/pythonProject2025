@@ -37,7 +37,7 @@ def plot_bubble(m2, standard, priceEst, priceReal) :
     ax.text(m2, standard, s=f"{priceEst:.1f}({priceReal:.1f})", color=colorPrice, fontsize=10, ha='center', va='center')
     plt.draw()
 
-def submit(exp):
+def on_new_estimate(exp):
     arr = np.fromstring(exp, sep=",")
     XS = np.array([arr])
     priceEst = model.predict(XS)
@@ -47,12 +47,12 @@ axbox = fig.add_axes((0.4, 0.03, 0.3, 0.06))
 text_box = TextBox(axbox, "Angi m2, standard(1-4) : ", textalignment="center")
 text_box.text_disp.set_fontsize(12)
 text_box.label.set_fontsize(12)
-text_box.on_submit(submit)
+text_box.on_submit(on_new_estimate)
 estPrice = dfTest["Estimated"].tolist()
 xT = dfTest['m2'].tolist()
 yT = dfTest['Standard'].tolist()
 price = y_test.tolist()
-for i in range(1, len(xT)):
+for i, x in enumerate(xT):
     plot_bubble(xT[i], yT[i], estPrice[i], price[i])
 text_box.set_active(True)
 plt.show()
