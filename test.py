@@ -1,18 +1,41 @@
-import pandas
-from matplotlib import pyplot as plt
-from sklearn.linear_model import LinearRegression
+import random
 
-dataHus = [[50, 1, 4.5],[70, 4, 4.0],[90, 3, 6.0],[110, 2, 12.0]]
-df = pandas.DataFrame(dataHus, columns =["m2","Std", "Price"])
-# X = Input/Independent y = Output
-X = df[['m2','Std']]
-y = df['Price']  # Create and train the model
-model = LinearRegression()
-model.fit(X, y)
-lei1 = [150,4]
-lei2 = [140,1]
-y_pred = model.predict([lei1,lei2])
-print("Leiligheter i sentrum")
-print(f"{lei1} est pris {y_pred[0]:.1f}")
-print(f"{lei2} est pris {y_pred[1]:.1f}")
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Create meshgrid data
+x = np.linspace(-1, 1, 10)
+y = np.linspace(-1, 1, 10)
+X, Y = np.meshgrid(x, y)
+
+# Define Z as a function of X and Y
+Z = np.cos(X)*np.cos(Y) * random.randrange(2000, 2500)
+
+# Parameters for Gaussian noise
+mean = 0
+std_dev = 100  # Small standard deviation
+
+# Generate noise of the same shape
+noise = np.random.normal(mean, std_dev, Z.shape)
+
+# Add noise to the existing array
+Z = Z + noise
+
+# Plot 3D surface with color gradient based on Z value
+fig = plt.figure(figsize=(10, 7))
+ax = fig.add_subplot(111, projection='3d')
+
+# Use a colormap to show the gradient
+surf = ax.plot_surface(X, Y, Z, cmap='viridis_r', edgecolor='none', alpha=0.5)
+
+# Axis labels and title
+ax.set_xlabel('X - Vest/Øst')
+ax.set_ylabel('Y - Nord/Sør')
+ax.set_zlabel('Z - Nedbør')
+ax.set_title('3D Surface Plot with Color Gradient (Z = sin(sqrt(X² + Y²)))')
+
+# Add a color bar to show the mapping of colors to Z values
+fig.colorbar(surf, ax=ax, shrink=0.6, aspect=10, label='Z value')
+
+plt.tight_layout()
 plt.show()
