@@ -4,9 +4,7 @@ import random
 
 df = pd.read_csv('Nedbor.csv')
 df["Month"] = 12
-#print(df.head())
 month = list(range(1,12))
-#y = [n*n for n in month]
 
 monthfactor1 = [0,100,100,110,80,70,80,110,110,120,120,150,200]
 monthfactor2 = [0,100,100,100,100,80,100,120,200,200,150,130,120]

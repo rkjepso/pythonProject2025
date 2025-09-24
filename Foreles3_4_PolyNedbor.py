@@ -8,7 +8,7 @@ from sklearn.preprocessing import PolynomialFeatures
 
 # Generate synthetic data
 np.random.seed(1234)
-X = np.linspace(0, 20, 41).reshape(-1, 1) # [0,0.5,1,1.5 ... 20]
+X = np.linspace(0, 20, 21).reshape(-1, 1) # [0,0.5,1,1.5 ... 20]
 y = 1500 + np.random.randint(-150, 450, size=X.shape) + pow(X-12, 2)*7
 poly = PolynomialFeatures(degree=2)
 X_poly = poly.fit_transform(X) # make tables for all x,x2,x3....
@@ -24,7 +24,7 @@ r_score = r2_score(y, y_pred)
 
 # Plot
 plt.scatter(X, y, color='blue', label='Train data')
-plt.scatter(X, y_pred, color='red', label='Train data')
+plt.scatter(X, y_pred, color='red', label='Estimated')
 plt.plot(X, y_pred, color='red', label='Regression line')
 plt.xlabel('km from Bergen')
 plt.ylabel('Rain (mm)')
