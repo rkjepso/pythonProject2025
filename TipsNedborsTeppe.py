@@ -27,7 +27,7 @@ ax = fig.add_subplot(111, projection='3d')
 
 # Use a colormap to show the gradient
 ax.grid(True)
-surf = ax.plot_surface(X, Y, Z, cmap='viridis_r', edgecolor='none', alpha=0.2)
+surf = ax.plot_surface(X, Y, Z, cmap='viridis_r', edgecolor='none', alpha=0.4)
 # Plot a basic wireframe.
 ax.plot_wireframe(X, Y, Z, rstride=1, cstride=1)
 # Axis labels and title
@@ -39,7 +39,7 @@ ax.set_title('3D "Nedbørsteppe"')
 ax.set_xticks([-1,0,1])
 ax.set_yticks([-1,0,1])
 # Add a color bar to show the mapping of colors to Z values
-fig.colorbar(surf, ax=ax, shrink=0.6, aspect=10, label='Z value')
+fig.colorbar(surf, ax=ax, shrink=0.3, aspect=10, label='Z value')
 
 plt.tight_layout()
 plt.show()
