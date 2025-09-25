@@ -34,12 +34,12 @@ ax.plot_wireframe(X, Y, Z, rstride=1, cstride=1)
 
 ax.set_xlabel('X - Vest/Øst')
 ax.set_ylabel('Y - Nord/Sør')
-ax.set_zlabel('Z - Nedbør')
+
 ax.set_title('3D "Nedbørsteppe"')
 ax.set_xticks([-1,0,1])
 ax.set_yticks([-1,0,1])
 # Add a color bar to show the mapping of colors to Z values
-fig.colorbar(surf, ax=ax, shrink=0.3, aspect=10, label='Z value')
+fig.colorbar(surf, ax=ax, shrink=0.3, aspect=20, label='Z mm')
 
 plt.tight_layout()
 plt.show()

@@ -21,13 +21,13 @@ def draw_the_map():
     axMap.scatter(xr, yr, c=ColorList, s=size_from_nedbor(nedborAar/12), alpha=1)
     labels = [label_from_nedbor(n) for n in nedborAar]
     for i, y in enumerate(xr):
-        axMap.text(xr[i], yr[i], s=labels[i], color='red', fontsize=8, ha='center', va='center')
+        axMap.text(xr[i], yr[i], s=labels[i], color='white', fontsize=10, ha='center', va='center')
 
 def index_from_nedbor(x):
     if x < 1300: return 0
     if x < 1700: return 1
-    if x < 2300: return 2
-    if x < 2800: return 3
+    if x < 2500: return 2
+    if x < 3200: return 3
     return 4
 
 def color_from_nedbor(nedbor):
@@ -56,9 +56,9 @@ def on_click(event) :
     aarsnedbor = sum(y_pred)
     axGraph.cla()
     draw_the_map()
-    axMap.set_title(f"coord: ({x:.2f},{y:.2f})")
-    axMap.scatter(x, y, c=color_from_nedbor(aarsnedbor), s=size_from_nedbor(aarsnedbor)*3, marker="o")
-    axMap.text(x, y, s=label_from_nedbor(aarsnedbor), color='red', fontsize=8, ha='center', va='center')
+    axMap.set_title(f"C: ({x:.1f},{y:.1f}) - click rød er estimert")
+    axMap.scatter(x, y, c="red", s=size_from_nedbor(aarsnedbor)*3, marker="o")
+    axMap.text(x, y, s=label_from_nedbor(aarsnedbor), color='white', fontsize=10, ha='center', va='center')
     axGraph.set_title(f"Nedbør per måned, Årsnedbør {int(aarsnedbor)} mm")
 
     colorsPred = [color_from_nedbor(nedbor * 12) for nedbor in y_pred]
@@ -89,7 +89,7 @@ df = pd.read_csv('NedborX.csv')
 marked_point = (0,0)
 ns = df['Nedbor']
 X = df.drop('Nedbor',  axis=1)
-poly = PolynomialFeatures(degree=4)
+poly = PolynomialFeatures(degree=3)
 X_poly = poly.fit_transform(X)
 X_train, X_test, Y_train, Y_test = train_test_split(
     X_poly, ns, test_size=0.25)
@@ -104,7 +104,7 @@ r_squared = r2_score(Y_test, Y_pred)
 print(f"R-squared: {r_squared:.2f}")
 print('mean_absolute_error (mnd) : ', mean_absolute_error(Y_test, Y_pred))
 
-colors = ['yellow', 'orange', 'gray', 'blue', 'darkblue']
+colors = [ 'orange', 'gray', 'blue', 'darkblue', 'black']
 draw_the_map()
 
 plt.connect('button_press_event', on_click)
