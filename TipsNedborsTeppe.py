@@ -27,7 +27,7 @@ ax = fig.add_subplot(111, projection='3d')
 
 # Use a colormap to show the gradient
 ax.grid(True)
-surf = ax.plot_surface(X, Y, Z, cmap='viridis_r', edgecolor='none', alpha=0.5)
+surf = ax.plot_surface(X, Y, Z, cmap='viridis_r', edgecolor='none', alpha=0.2)
 # Plot a basic wireframe.
 ax.plot_wireframe(X, Y, Z, rstride=1, cstride=1)
 # Axis labels and title
