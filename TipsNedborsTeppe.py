@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 #Eksempel som viser grafisk to input (uavhengige) og en output (avhengig)
 # Create meshgrid data
 x = np.linspace(-1, 1, 15)
-y = np.linspace(-1, 1, 15)
+y = np.linspace(-2, 2, 10)
 X, Y = np.meshgrid(x, y)
 
 # Define Z as a function of X and Y
@@ -36,8 +36,8 @@ ax.set_xlabel('X - Vest/Øst')
 ax.set_ylabel('Y - Nord/Sør')
 
 ax.set_title('3D "Nedbørsteppe"')
-ax.set_xticks([-1,0,1])
-ax.set_yticks([-1,0,1])
+ax.set_xticks([-2,0,2])
+ax.set_yticks([-2,0,2])
 # Add a color bar to show the mapping of colors to Z values
 fig.colorbar(surf, ax=ax, shrink=0.3, aspect=20, label='Z mm')
 

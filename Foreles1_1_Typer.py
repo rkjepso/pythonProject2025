@@ -4,7 +4,7 @@ pi = 3.14
 name:str = "Richard"
 print(f"Kurs: {kurs}")
 
-#kurs = "test"
+#kurs = "test.py"
 #print(f"Kurs: {kurs}")
 print(pi, name)
 

@@ -84,7 +84,7 @@ axMap.axis('off')
 fig.subplots_adjust(left=0, right=1, top=1, bottom=0) # Adjust the figure to fit the image
 axMap.margins(x=0.01, y=0.01)  # Adjust x and y margins
 
-# Read rain data, and split in train and test data
+# Read rain data, and split in train and test.py data
 df = pd.read_csv('NedborX.csv')
 marked_point = (0,0)
 ns = df['Nedbor']
