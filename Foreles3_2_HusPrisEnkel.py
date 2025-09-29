@@ -3,6 +3,7 @@ from sklearn.linear_model import LinearRegression
 solgtLeil = [[50, 1, 2.5],   [60, 2, 4.5], [30,1,1.5],         [70, 4, 4.0],
             [90, 3, 6.0],   [110, 2, 12.0], [50, 4, 3.5]]
 df = pd.DataFrame(columns=["m2","Std", "Price"], data=solgtLeil)
+
 X = df[['m2','Std']]
 y = df['Price']
 model = LinearRegression()  #

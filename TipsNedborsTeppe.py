@@ -4,12 +4,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 #Eksempel som viser grafisk to input (uavhengige) og en output (avhengig)
 # Create meshgrid data
-x = np.linspace(-1, 1, 15)
+x = np.linspace(-2, 2, 15)
 y = np.linspace(-2, 2, 10)
 X, Y = np.meshgrid(x, y)
 
 # Define Z as a function of X and Y
-Z = np.cos(X)*np.cos(Y*0.7) * random.randrange(2000, 2500)
+Z = np.cos(X*0.2-0.5)*np.cos(Y*0.7) * random.randrange(1000, 2000) + 1000
 
 # Parameters for Gaussian noise
 mean = 0
