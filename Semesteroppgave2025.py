@@ -73,8 +73,8 @@ def draw_label_and_ticks():
 
 # Create the figures
 fig = plt.figure(figsize=(10, 4))
-axGraph = fig.add_axes((0.03, 0.05, 0.35, 0.9))
-axMap = fig.add_axes((0.41, 0.05, 0.59, 0.9))
+axGraph = fig.add_axes((0.05, 0.07, 0.35, 0.85))
+axMap = fig.add_axes((0.41, 0.07, 0.59, 0.85))
 draw_label_and_ticks()
 img = mpimg.imread('StorBergen2.png')
 axMap.set_title("Årsnedbør Stor Bergen")
