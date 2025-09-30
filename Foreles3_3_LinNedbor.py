@@ -2,7 +2,7 @@
 import matplotlib.pyplot as py
 import numpy as np
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import r2_score, mean_absolute_error
 
 X_km = np.linspace(0,50, 11) # konverterer [0,5..] til en kolonne
 y_nedbor = np.array([2700,2500,2300,2700,2400,2300,2200,1800,2100,1600,1800])
@@ -22,7 +22,7 @@ ax.legend(["real", "predicted", "regression line"])
 ax.set_xlabel("km fra sentrum")
 ax.set_ylabel("mm nebor")
 # Quality of the model
-std = mean_squared_error(y_nedbor, y_nedborPredict)**0.5 # standard deviation/avvk
+mae = mean_absolute_error(y_nedbor, y_nedborPredict) # standardavvik
 r_score = r2_score(y_nedbor, y_nedborPredict)
-ax.set_title(f"Nedbør fra Bergen Sentrum STD:{std:.0f} R2:{r_score:.1f}")
+ax.set_title(f"Nedbør fra Bergen Sentrum STD:{mae:.0f} R2:{r_score:.1f}")
 py.show()

@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from sklearn.preprocessing import PolynomialFeatures
 
 # Generate synthetic data (rain!)
@@ -26,9 +26,7 @@ model.fit(X_train_poly, y_train)  # y = Ax + Bx2..Cx3 -> calulate A, B, C...
 
 # Predict, find the curve
 y_pred = model.predict(X_test_poly)
-# Evaluate model quality
-mse_test = mean_squared_error(y_test, y_pred)
-r2_test = r2_score(y_test, y_pred)
+
 
 # Plot
 plt.scatter(X, y, color='blue', label='Train data')
@@ -38,7 +36,10 @@ plt.scatter(X_test, y_pred, color='red', label='Pred data')
 plt.plot(X, model.predict(X_all_poly), color='red', label='Regression line')
 plt.xlabel('km from Bergen')
 plt.ylabel('Rain (mm)')
-plt.title(f'Linear Regression STD: {np.sqrt(mse_test):.2f}, R2: {r2_test:.2f}')
+# Evaluate model quality
+mse_test = mean_absolute_error(y_test, y_pred)
+r2_test = r2_score(y_test, y_pred)
+plt.title(f'Linear Regression STD: {mse_test:.2f}, R2: {r2_test:.2f}')
 plt.legend()
 plt.show()
 

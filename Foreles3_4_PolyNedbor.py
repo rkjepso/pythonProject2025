@@ -2,8 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import  r2_score, mean_absolute_error
 from sklearn.preprocessing import PolynomialFeatures
 
 # Generate synthetic data
@@ -19,7 +18,7 @@ model.fit(X_poly, y)  # y = Ax + Bx2..Cx3 -> calulate A, B, C...
 
 # Predict, find the curve
 y_pred = model.predict(X_poly) # calulate y = Ax + Bx2..
-std = np.sqrt(mean_squared_error(y, y_pred)) # standard deviation/avvk
+std = mean_absolute_error(y, y_pred) # standard deviation/avvk
 r_score = r2_score(y, y_pred)
 
 # Plot

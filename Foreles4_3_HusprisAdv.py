@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 from matplotlib.pyplot import colormaps
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, mean_absolute_error
 import pandas as pd
 import numpy as np
 from matplotlib.widgets import TextBox
@@ -24,8 +24,8 @@ model.fit(X_train, y_train)
 
 # Predict and evaluate
 y_pred = model.predict(X_test)
-mse = mean_squared_error(y_test, y_pred)
-print("Standard avvik:", int(np.sqrt(mse)))
+mae = mean_absolute_error(y_test, y_pred)
+print(f"Standard avvik:{mae:.0f}")
 dfTest = pd.DataFrame(X_test)
 dfTest["Estimated"] = [int(e) for e in y_pred]
 

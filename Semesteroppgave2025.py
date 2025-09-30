@@ -57,11 +57,14 @@ def on_click(event) :
     axGraph.cla()
     draw_the_map()
     axMap.set_title(f"C: ({x:.1f},{y:.1f}) - click rød er estimert")
-    axMap.scatter(x, y, c="red", s=size_from_nedbor(aarsnedbor)*3, marker="o")
+
+
     axMap.text(x, y, s=label_from_nedbor(aarsnedbor), color='white', fontsize=10, ha='center', va='center')
     axGraph.set_title(f"Nedbør per måned, Årsnedbør {int(aarsnedbor)} mm")
 
     colorsPred = [color_from_nedbor(nedbor * 12) for nedbor in y_pred]
+    axMap.scatter(x, y, c=color_from_nedbor(aarsnedbor), s=size_from_nedbor(aarsnedbor) * 3.5, marker="o")
+    axMap.scatter(x, y, c="red", s=size_from_nedbor(aarsnedbor)*2.5, marker="o")
     axGraph.bar(months, y_pred, color=colorsPred)
     draw_label_and_ticks()
     plt.draw()
