@@ -17,11 +17,15 @@ prices = [
 
 # Create DataFrame
 df = pd.DataFrame({
-    'Price': np.round(prices, 2),
-    'm2': sizes,
-    'Standard': standards
+    'm2': sizes.astype(str),
+    'Std': standards.astype(str),
+    'Price': np.round(prices, 2).astype(str)
 })
 
+df['m2'] = df['m2'].str.rjust(10)
+df['Std'] = df['Std'].str.rjust(10)
+df['Price'] = df['Price'].str.rjust(10)
+df.columns = [col.rjust(10) for col in df.columns]
 # Save to CSV
 df.to_csv('house_data.csv', index=False)
 print("CSV file 'house_data.csv' created successfully.")
