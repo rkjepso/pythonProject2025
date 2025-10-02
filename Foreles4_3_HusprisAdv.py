@@ -16,7 +16,7 @@ ax.set_title("Leiligheter i Bergen (Est/Real)")
 ax.set_xlabel('(m2)')
 ax.set_ylabel('Standard (4=top,1=dårlig)')
 
-X = df[['m2', 'Standard']]
+X = df[['m2', 'Std']]
 y = df['Price']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.10, random_state=42)
 model = LinearRegression()
@@ -50,7 +50,7 @@ text_box.label.set_fontsize(12)
 text_box.on_submit(on_new_estimate)
 estPrice = dfTest["Estimated"].tolist()
 xT = dfTest['m2'].tolist()
-yT = dfTest['Standard'].tolist()
+yT = dfTest['Std'].tolist()
 price = y_test.tolist()
 for i, x in enumerate(xT):
     plot_bubble(xT[i], yT[i], estPrice[i], price[i])
