@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 solgtLeil = [
-    [80,    3.4,    8.2],
+    [80,    3.4,    8.2], # m2, Standard, Pris
     [108,   3.4,    9.4],
     [77,    1.5,    5.3],
     [135,   2.5,    9.3],
