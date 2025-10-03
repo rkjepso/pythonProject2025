@@ -38,10 +38,10 @@ def plot_bubble(m2, standard, priceEst, priceReal) :
     plt.draw()
 
 def on_new_estimate(exp):
-    arr = np.fromstring(exp, sep=",")
-    XS = np.array([arr])
+    m2,standard = np.fromstring(exp, sep=",")
+    XS = np.array([[m2,standard]])
     priceEst = model.predict(XS)
-    plot_bubble(arr[0], arr[1], priceEst[0], 0.0)
+    plot_bubble(m2, standard, priceEst[0], 0.0)
 
 axbox = fig.add_axes((0.4, 0.03, 0.3, 0.06))
 text_box = TextBox(axbox, "Angi m2, standard(1-4) : ", textalignment="center")
